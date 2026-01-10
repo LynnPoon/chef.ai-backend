@@ -43,7 +43,7 @@ export async function getRecipeFromHf(ingredientsArr) {
   const ingredientsString = ingredientsArr.join(", ");
   try {
     const response = await hf.chatCompletion({
-      model: "mistralai/Mixtral-8x7B-Instruct-v0.1",
+      model: "meta-llama/Llama-3.2-3B-Instruct",
       messages: [
         { role: "system", content: SYSTEM_PROMPT },
         {
@@ -53,6 +53,7 @@ export async function getRecipeFromHf(ingredientsArr) {
       ],
       max_tokens: 1024,
     });
+
     return response.choices[0].message.content;
   } catch (err) {
     console.error(err.message);
